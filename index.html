@@ -7,629 +7,234 @@
   <meta name="description" content="Especialista en Medicina Física y Rehabilitación. Recupera tu movilidad, alivia el dolor y mejora tu calidad de vida con tratamientos personalizados." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    /* ─── RESET & TOKENS ─────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --sage:    #7C9E8A;
-      --sage-lt: #A8C3B0;
-      --cream:   #F5F0E8;
-      --warm:    #EDE5D8;
-      --stone:   #3D3830;
-      --muted:   #7A7165;
-      --white:   #FDFCF9;
-      --accent:  #C8956C;
-
-      --ff-head: 'Cormorant Garamond', Georgia, serif;
-      --ff-body: 'DM Sans', system-ui, sans-serif;
-
+      --brown:    #47280E;
+      --brown-lt: #6B3D18;
+      --gold:     #8A6A32;
+      --gold-lt:  #A8844A;
+      --sand:     #D4B27D;
+      --sand-lt:  #E8D4B0;
+      --cream:    #F7F1E8;
+      --warm:     #EFE6D6;
+      --white:    #FDFAF5;
+      --muted:    #7A6A55;
+      --ff-head:  'Playfair Display', Georgia, serif;
+      --ff-body:  'Jost', system-ui, sans-serif;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-      --shadow: 0 8px 40px rgba(61,56,48,.10);
-      --shadow-lg: 0 24px 60px rgba(61,56,48,.14);
+      --shadow:    0 8px 40px rgba(71,40,14,.10);
+      --shadow-lg: 0 24px 60px rgba(71,40,14,.16);
     }
 
     html { scroll-behavior: smooth; }
+    body { font-family: var(--ff-body); background: var(--white); color: var(--brown); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
-    body {
-      font-family: var(--ff-body);
-      background: var(--white);
-      color: var(--stone);
-      font-size: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ─── NAV ────────────────────────────────────── */
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 20px 5vw;
-      background: rgba(253,252,249,0.88);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(124,158,138,.15);
+      background: rgba(253,250,245,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(138,106,50,.15);
       transition: padding .3s var(--ease-out);
     }
     nav.scrolled { padding: 12px 5vw; }
-
-    .nav-logo {
-      font-family: var(--ff-head);
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--stone);
-      letter-spacing: .02em;
-      text-decoration: none;
-    }
-    .nav-logo span { color: var(--sage); }
-
-    .nav-links {
-      display: flex; gap: 36px; list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--muted);
-      font-size: .875rem;
-      font-weight: 500;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--sage); }
-
-    .nav-cta {
-      background: var(--sage);
-      color: var(--white) !important;
-      padding: 10px 22px;
-      border-radius: 100px;
-      transition: background .2s, transform .2s !important;
-    }
-    .nav-cta:hover { background: var(--stone) !important; transform: translateY(-1px); }
-
+    .nav-logo { font-family: var(--ff-head); font-size: 1.25rem; font-weight: 600; color: var(--brown); letter-spacing: .02em; text-decoration: none; }
+    .nav-logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: .78rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--gold) !important; color: var(--white) !important; padding: 10px 22px; border-radius: 100px; transition: background .2s, transform .2s !important; }
+    .nav-cta:hover { background: var(--brown) !important; transform: translateY(-1px); }
     .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--stone); border-radius: 2px; transition: .3s; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--brown); border-radius: 2px; transition: .3s; }
 
-    /* ─── HERO ───────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-top: 80px;
-      overflow: hidden;
-    }
-
-    .hero-content {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 80px 5vw 80px 8vw;
-      position: relative;
-    }
-
+    /* HERO */
+    .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 80px; overflow: hidden; }
+    .hero-content { display: flex; flex-direction: column; justify-content: center; padding: 80px 5vw 80px 8vw; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--warm);
-      color: var(--sage);
-      font-size: .75rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
-      padding: 8px 16px; border-radius: 100px;
-      width: fit-content; margin-bottom: 32px;
+      background: var(--warm); color: var(--gold);
+      font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      padding: 8px 18px; border-radius: 100px; width: fit-content; margin-bottom: 32px;
       opacity: 0; animation: fadeUp .8s var(--ease-out) .2s forwards;
     }
-    .hero-badge::before {
-      content: ''; width: 6px; height: 6px; background: var(--sage); border-radius: 50%;
-    }
+    .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+    .hero h1 { font-family: var(--ff-head); font-size: clamp(2.8rem, 4.5vw, 5rem); font-weight: 500; line-height: 1.1; color: var(--brown); letter-spacing: -.01em; opacity: 0; animation: fadeUp .9s var(--ease-out) .35s forwards; }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-desc { margin-top: 28px; font-size: 1rem; color: var(--muted); max-width: 460px; line-height: 1.75; font-weight: 300; opacity: 0; animation: fadeUp .9s var(--ease-out) .5s forwards; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-top: 44px; opacity: 0; animation: fadeUp .9s var(--ease-out) .65s forwards; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--white); padding: 16px 32px; border-radius: 100px; text-decoration: none; font-weight: 500; font-size: .9rem; letter-spacing: .02em; transition: background .25s, transform .25s, box-shadow .25s; box-shadow: 0 4px 20px rgba(138,106,50,.35); }
+    .btn-primary:hover { background: var(--brown); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 10px; color: var(--brown); padding: 16px 24px; border-radius: 100px; text-decoration: none; font-weight: 500; font-size: .9rem; border: 1.5px solid rgba(71,40,14,.2); transition: border-color .25s, background .25s; }
+    .btn-ghost:hover { border-color: var(--gold); background: var(--warm); }
+    .hero-stats { display: flex; gap: 40px; margin-top: 64px; opacity: 0; animation: fadeUp .9s var(--ease-out) .8s forwards; }
+    .stat-num { font-family: var(--ff-head); font-size: 2.4rem; font-weight: 600; color: var(--brown); line-height: 1; }
+    .stat-num span { color: var(--gold); }
+    .stat-label { font-size: .75rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .07em; font-weight: 500; }
+    .hero-visual { position: relative; background: linear-gradient(160deg, var(--cream) 0%, var(--warm) 100%); overflow: hidden; display: flex; align-items: flex-end; justify-content: center; }
+    .hero-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 60% 40%, rgba(138,106,50,.15) 0%, transparent 70%); }
+    .hero-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; color: var(--sand); font-family: var(--ff-head); font-size: 1.1rem; font-style: italic; position: relative; z-index: 1; opacity: 0; animation: fadeIn 1.2s var(--ease-out) .4s forwards; }
+    .hero-decoration { position: absolute; width: 360px; height: 360px; border: 1px solid rgba(138,106,50,.2); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: spin 35s linear infinite; }
+    .hero-decoration::after { content: ''; position: absolute; width: 280px; height: 280px; border: 1px dashed rgba(212,178,125,.25); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
-    .hero h1 {
+    /* SOBRE MI */
+    .about { padding: 120px 0; }
+    .about-text { background: var(--warm); padding: 80px 8vw; display: flex; flex-direction: column; justify-content: center; }
+    .section-tag { font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .section-tag::after { content: ''; flex: 0 0 32px; height: 1px; background: var(--sand); }
+    .about-text h2 { font-family: var(--ff-head); font-size: clamp(2rem, 3.2vw, 3rem); font-weight: 500; line-height: 1.18; color: var(--brown); }
+    .about-text h2 em { font-style: italic; color: var(--gold); }
+
+    /* TAGLINE elegante con líneas decorativas */
+    .about-tagline {
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 22px; margin-bottom: 4px;
       font-family: var(--ff-head);
-      font-size: clamp(3rem, 5vw, 5.5rem);
-      font-weight: 300;
-      line-height: 1.08;
-      color: var(--stone);
-      letter-spacing: -.01em;
-      opacity: 0; animation: fadeUp .9s var(--ease-out) .35s forwards;
+      font-size: 1.05rem; font-style: italic; font-weight: 400;
+      color: var(--gold-lt); letter-spacing: .02em;
+      width: fit-content;
     }
-    .hero h1 em { font-style: italic; color: var(--sage); }
+    .about-tagline::before,
+    .about-tagline::after { content: ''; flex: 0 0 36px; height: 1px; background: linear-gradient(90deg, transparent, var(--sand)); }
+    .about-tagline::after { background: linear-gradient(90deg, var(--sand), transparent); }
 
-    .hero-desc {
-      margin-top: 28px;
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 460px;
-      line-height: 1.7;
-      font-weight: 300;
-      opacity: 0; animation: fadeUp .9s var(--ease-out) .5s forwards;
-    }
+    .about-text p { margin-top: 18px; color: var(--muted); font-weight: 300; line-height: 1.85; font-size: .97rem; }
 
-    .hero-actions {
-      display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
-      margin-top: 44px;
-      opacity: 0; animation: fadeUp .9s var(--ease-out) .65s forwards;
-    }
+    .credentials { display: grid; gap: 14px; margin-top: 36px; grid-template-columns: repeat(3, 1fr); }
+    .credential-item { display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px; background: var(--white); border-radius: 14px; box-shadow: 0 2px 12px rgba(71,40,14,.07); border: 1px solid rgba(212,178,125,.2); }
+    .credential-icon { width: 36px; height: 36px; min-width: 36px; background: linear-gradient(135deg, var(--gold), var(--brown-lt)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; }
+    .credential-text strong { display: block; font-size: .85rem; color: var(--brown); font-weight: 600; line-height: 1.3; }
+    .credential-text span  { font-size: .78rem; color: var(--muted); line-height: 1.4; }
 
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--sage);
-      color: var(--white);
-      padding: 16px 32px;
-      border-radius: 100px;
-      text-decoration: none;
-      font-weight: 500; font-size: .95rem;
-      transition: background .25s, transform .25s, box-shadow .25s;
-      box-shadow: 0 4px 20px rgba(124,158,138,.35);
+    /* Redes sociales en credential */
+    .credential-social { display: flex; align-items: center; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+    .credential-social a {
+      display: inline-flex; align-items: center; gap: 5px;
+      color: var(--gold); font-size: .75rem; font-weight: 500;
+      text-decoration: none; padding: 5px 11px;
+      border: 1px solid rgba(138,106,50,.3); border-radius: 100px;
+      transition: background .2s, color .2s, border-color .2s;
     }
-    .btn-primary:hover { background: var(--stone); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .credential-social a:hover { background: var(--gold); color: var(--white); border-color: var(--gold); }
+    .credential-social svg { width: 12px; height: 12px; fill: currentColor; flex-shrink: 0; }
 
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 10px;
-      color: var(--stone);
-      padding: 16px 24px;
-      border-radius: 100px;
-      text-decoration: none;
-      font-weight: 500; font-size: .95rem;
-      border: 1.5px solid rgba(61,56,48,.2);
-      transition: border-color .25s, background .25s;
-    }
-    .btn-ghost:hover { border-color: var(--sage); background: var(--warm); }
-
-    .hero-stats {
-      display: flex; gap: 40px; margin-top: 64px;
-      opacity: 0; animation: fadeUp .9s var(--ease-out) .8s forwards;
-    }
-    .stat-item { text-align: left; }
-    .stat-num {
-      font-family: var(--ff-head);
-      font-size: 2.4rem; font-weight: 600;
-      color: var(--stone); line-height: 1;
-    }
-    .stat-num span { color: var(--sage); }
-    .stat-label { font-size: .8rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .06em; }
-
-    .hero-visual {
-      position: relative;
-      background: var(--cream);
-      overflow: hidden;
-      display: flex; align-items: flex-end; justify-content: center;
-    }
-
-    .hero-visual::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 60% 40%, rgba(124,158,138,.2) 0%, transparent 70%);
-    }
-
-    .hero-img-placeholder {
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column;
-      gap: 16px;
-      color: var(--sage-lt);
-      font-family: var(--ff-head);
-      font-size: 1.2rem;
-      font-style: italic;
-      opacity: 0; animation: fadeIn 1.2s var(--ease-out) .4s forwards;
-      position: relative; z-index: 1;
-    }
-
-    .hero-decoration {
-      position: absolute;
-      width: 340px; height: 340px;
-      border: 1px solid rgba(124,158,138,.25);
-      border-radius: 50%;
-      top: 50%; left: 50%; transform: translate(-50%, -50%);
-      animation: spin 30s linear infinite;
-    }
-    .hero-decoration::after {
-      content: '';
-      position: absolute;
-      width: 260px; height: 260px;
-      border: 1px dashed rgba(124,158,138,.2);
-      border-radius: 50%;
-      top: 50%; left: 50%; transform: translate(-50%, -50%);
-    }
-
-    /* ─── SECCIÓN: SOBRE MÍ ──────────────────────── */
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      padding: 120px 0;
-    }
-
-    .about-text {
-      background: var(--warm);
-      padding: 80px 8vw 80px 8vw;
-      display: flex; flex-direction: column; justify-content: center;
-    }
-
-    .section-tag {
-      font-size: .75rem; font-weight: 500; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--sage);
-      margin-bottom: 20px;
-    }
-
-    .about-text h2 {
-      font-family: var(--ff-head);
-      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-      font-weight: 300; line-height: 1.15;
-      color: var(--stone);
-    }
-    .about-text h2 em { font-style: italic; color: var(--sage); }
-
-    .about-text p {
-      margin-top: 20px; color: var(--muted); font-weight: 300; line-height: 1.8;
-    }
-
-    .credentials {
-      display: flex; flex-direction: column; gap: 16px; margin-top: 36px;
-    }
-    .credential-item {
-      display: flex; align-items: flex-start; gap: 14px;
-      padding: 16px 20px;
-      background: var(--white);
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(61,56,48,.06);
-    }
-    .credential-icon {
-      width: 36px; height: 36px; min-width: 36px;
-      background: var(--sage);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
-    }
-    .credential-text strong { display: block; font-size: .9rem; color: var(--stone); }
-    .credential-text span { font-size: .8rem; color: var(--muted); }
-
-    .about-visual {
-      background: var(--cream);
-      position: relative;
-      display: flex; align-items: center; justify-content: center;
-      min-height: 500px;
-    }
-    .about-visual-inner {
-      width: 80%; max-width: 380px;
-      aspect-ratio: 2/4;
-      background: linear-gradient(135deg, var(--sage-lt) 0%, var(--sage) 100%);
-      border-radius: 200px 200px 0 0;
-      display: flex; align-items: center; justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .about-visual-inner::after {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.3), transparent 60%);
-    }
-    .about-label {
-      position: absolute; bottom: 0; right: 0;
-      background: var(--accent);
-      color: var(--white);
-      padding: 20px 28px;
-      border-radius: 20px 0 0 0;
-      font-family: var(--ff-head);
-      font-size: 1.1rem;
-    }
-
-    /* ─── SECCIÓN: SERVICIOS ─────────────────────── */
-    .services {
-      padding: 120px 8vw;
-      background: var(--white);
-    }
-
-    .section-header {
-      text-align: center; max-width: 600px; margin: 0 auto 72px;
-    }
-    .section-header h2 {
-      font-family: var(--ff-head);
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
-      font-weight: 300; line-height: 1.15;
-      color: var(--stone);
-    }
-    .section-header h2 em { font-style: italic; color: var(--sage); }
-    .section-header p { margin-top: 16px; color: var(--muted); font-weight: 300; }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    .service-card {
-      background: var(--cream);
-      border-radius: 20px;
-      padding: 36px 32px;
-      position: relative;
-      overflow: hidden;
-      transition: transform .3s var(--ease-out), box-shadow .3s;
-      cursor: default;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--sage), var(--sage-lt));
-      transform: scaleX(0); transform-origin: left;
-      transition: transform .4s var(--ease-out);
-    }
+    /* SERVICIOS */
+    .services { padding: 120px 8vw; background: var(--white); }
+    .section-header { text-align: center; max-width: 600px; margin: 0 auto 72px; }
+    .section-header .section-tag { justify-content: center; }
+    .section-header .section-tag::before { content: ''; flex: 0 0 32px; height: 1px; background: var(--sand); }
+    .section-header h2 { font-family: var(--ff-head); font-size: clamp(2rem, 3.8vw, 3.2rem); font-weight: 500; line-height: 1.18; color: var(--brown); }
+    .section-header h2 em { font-style: italic; color: var(--gold); }
+    .section-header p { margin-top: 16px; color: var(--muted); font-weight: 300; font-size: .97rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .service-card { background: var(--cream); border-radius: 20px; padding: 36px 32px; position: relative; overflow: hidden; transition: transform .3s var(--ease-out), box-shadow .3s; border: 1px solid rgba(212,178,125,.2); cursor: default; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--sand)); transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease-out); }
     .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
     .service-card:hover::before { transform: scaleX(1); }
-
-    .service-icon {
-      width: 52px; height: 52px;
-      background: var(--sage);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 22px; margin-bottom: 24px;
-      transition: transform .3s;
-    }
+    .service-icon { width: 52px; height: 52px; background: linear-gradient(135deg, var(--gold), var(--brown-lt)); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 24px; transition: transform .3s; }
     .service-card:hover .service-icon { transform: scale(1.1) rotate(-5deg); }
+    .service-card h3 { font-family: var(--ff-head); font-size: 1.4rem; font-weight: 500; color: var(--brown); margin-bottom: 12px; }
+    .service-card p { font-size: .9rem; color: var(--muted); font-weight: 300; line-height: 1.75; }
 
-    .service-card h3 {
-      font-family: var(--ff-head);
-      font-size: 1.45rem; font-weight: 400; color: var(--stone);
-      margin-bottom: 12px;
-    }
-    .service-card p { font-size: .9rem; color: var(--muted); font-weight: 300; line-height: 1.7; }
-
-    /* ─── TESTIMONIOS ────────────────────────────── */
-    .testimonials {
-      padding: 100px 8vw;
-      background: var(--warm);
-      overflow: hidden;
-    }
-
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-    }
-
-    .testimonial-card {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 36px 32px;
-      box-shadow: var(--shadow);
-    }
-    .testimonial-stars { color: var(--accent); font-size: 1.1rem; margin-bottom: 16px; }
-    .testimonial-card blockquote {
-      font-family: var(--ff-head);
-      font-size: 1.15rem; font-style: italic; font-weight: 300;
-      color: var(--stone); line-height: 1.6; margin-bottom: 24px;
-    }
+    /* TESTIMONIOS */
+    .testimonials { padding: 100px 8vw; background: var(--warm); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .testimonial-card { background: var(--white); border-radius: 20px; padding: 36px 32px; box-shadow: var(--shadow); border: 1px solid rgba(212,178,125,.15); }
+    .testimonial-stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 16px; }
+    .testimonial-card blockquote { font-family: var(--ff-head); font-size: 1.1rem; font-style: italic; font-weight: 400; color: var(--brown); line-height: 1.65; margin-bottom: 24px; }
     .testimonial-author { display: flex; align-items: center; gap: 12px; }
-    .author-avatar {
-      width: 42px; height: 42px;
-      background: var(--sage);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--ff-head); font-size: 1.1rem; font-weight: 600;
-      color: var(--white);
-    }
-    .author-name { font-size: .9rem; font-weight: 500; color: var(--stone); }
-    .author-detail { font-size: .8rem; color: var(--muted); }
+    .author-avatar { width: 42px; height: 42px; background: linear-gradient(135deg, var(--gold), var(--brown-lt)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--ff-head); font-size: 1.1rem; font-weight: 600; color: var(--white); }
+    .author-name { font-size: .9rem; font-weight: 600; color: var(--brown); }
+    .author-detail { font-size: .78rem; color: var(--muted); }
 
-    /* ─── AGENDA ─────────────────────────────────── */
-    #agenda {
-      padding: 120px 8vw;
-      background: var(--white);
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .agenda-info h2 {
-      font-family: var(--ff-head);
-      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
-      font-weight: 300; line-height: 1.15; color: var(--stone);
-    }
-    .agenda-info h2 em { font-style: italic; color: var(--sage); }
-    .agenda-info p { margin-top: 20px; color: var(--muted); font-weight: 300; line-height: 1.8; }
-
-    .info-items { display: flex; flex-direction: column; gap: 20px; margin-top: 40px; }
-    .info-item {
-      display: flex; align-items: flex-start; gap: 16px;
-    }
-    .info-item-icon {
-      width: 44px; height: 44px; min-width: 44px;
-      background: var(--cream);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-    }
-    .info-item strong { display: block; font-size: .9rem; color: var(--stone); font-weight: 500; }
-    .info-item span { font-size: .85rem; color: var(--muted); }
-
-    .whatsapp-btn {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: #25D366;
-      color: var(--white);
-      padding: 14px 28px;
-      border-radius: 100px;
-      text-decoration: none;
-      font-weight: 500; font-size: .9rem;
-      margin-top: 32px;
-      transition: background .25s, transform .25s;
-      box-shadow: 0 4px 16px rgba(37,211,102,.3);
-    }
+    /* AGENDA */
+    #agenda { padding: 120px 8vw; background: var(--white); display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: start; }
+    .agenda-info h2 { font-family: var(--ff-head); font-size: clamp(2rem, 3.2vw, 3rem); font-weight: 500; line-height: 1.18; color: var(--brown); }
+    .agenda-info h2 em { font-style: italic; color: var(--gold); }
+    .agenda-info > p { margin-top: 20px; color: var(--muted); font-weight: 300; line-height: 1.8; }
+    .info-items { display: flex; flex-direction: column; gap: 18px; margin-top: 36px; }
+    .info-item { display: flex; align-items: flex-start; gap: 16px; }
+    .info-item-icon { width: 44px; height: 44px; min-width: 44px; background: var(--cream); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid rgba(212,178,125,.25); }
+    .info-item strong { display: block; font-size: .9rem; color: var(--brown); font-weight: 600; }
+    .info-item span { font-size: .83rem; color: var(--muted); }
+    .whatsapp-btn { display: inline-flex; align-items: center; gap: 10px; background: #25D366; color: var(--white); padding: 14px 28px; border-radius: 100px; text-decoration: none; font-weight: 500; font-size: .9rem; margin-top: 32px; transition: background .25s, transform .25s; box-shadow: 0 4px 16px rgba(37,211,102,.3); }
     .whatsapp-btn:hover { background: #1ea854; transform: translateY(-2px); }
+    .whatsapp-btn svg { width: 18px; height: 18px; fill: white; }
 
-    /* ─── FORM ───────────────────────────────────── */
-    .form-wrapper {
-      background: var(--cream);
-      border-radius: 28px;
-      padding: 48px 44px;
-      box-shadow: var(--shadow);
-    }
-
-    .form-title {
-      font-family: var(--ff-head);
-      font-size: 1.6rem; font-weight: 400; color: var(--stone);
-      margin-bottom: 32px;
-    }
-
+    /* FORM */
+    .form-wrapper { background: var(--cream); border-radius: 28px; padding: 48px 44px; box-shadow: var(--shadow); border: 1px solid rgba(212,178,125,.2); }
+    .form-title { font-family: var(--ff-head); font-size: 1.6rem; font-weight: 500; color: var(--brown); margin-bottom: 32px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-
     .form-group { margin-bottom: 20px; }
-    .form-group label {
-      display: block; font-size: .8rem; font-weight: 500;
-      letter-spacing: .06em; text-transform: uppercase;
-      color: var(--muted); margin-bottom: 8px;
-    }
-    .form-group input, .form-group select, .form-group textarea {
-      width: 100%;
-      padding: 14px 18px;
-      border: 1.5px solid rgba(124,158,138,.25);
-      border-radius: 12px;
-      background: var(--white);
-      font-family: var(--ff-body);
-      font-size: .95rem;
-      color: var(--stone);
-      transition: border-color .2s, box-shadow .2s;
-      outline: none;
-      appearance: none;
-    }
-    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-      border-color: var(--sage);
-      box-shadow: 0 0 0 4px rgba(124,158,138,.12);
-    }
+    .form-group label { display: block; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 14px 18px; border: 1.5px solid rgba(138,106,50,.2); border-radius: 12px; background: var(--white); font-family: var(--ff-body); font-size: .93rem; color: var(--brown); transition: border-color .2s, box-shadow .2s; outline: none; appearance: none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(138,106,50,.1); }
     .form-group textarea { resize: vertical; min-height: 90px; }
-
-    .form-submit {
-      width: 100%;
-      background: var(--sage);
-      color: var(--white);
-      border: none;
-      padding: 18px 32px;
-      border-radius: 100px;
-      font-family: var(--ff-body);
-      font-size: 1rem; font-weight: 500;
-      cursor: pointer;
-      transition: background .25s, transform .25s, box-shadow .25s;
-      box-shadow: 0 4px 20px rgba(124,158,138,.35);
-    }
-    .form-submit:hover { background: var(--stone); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .form-submit { width: 100%; background: var(--gold); color: var(--white); border: none; padding: 18px 32px; border-radius: 100px; font-family: var(--ff-body); font-size: 1rem; font-weight: 500; cursor: pointer; transition: background .25s, transform .25s, box-shadow .25s; box-shadow: 0 4px 20px rgba(138,106,50,.35); letter-spacing: .02em; }
+    .form-submit:hover { background: var(--brown); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
     .form-submit:active { transform: translateY(0); }
     .form-submit.loading { opacity: .7; pointer-events: none; }
+    #form-status { text-align: center; margin-top: 16px; font-size: .9rem; font-weight: 500; min-height: 24px; }
+    #form-status.success { color: var(--gold); }
+    #form-status.error   { color: #b83232; }
 
-    #form-status {
-      text-align: center; margin-top: 16px;
-      font-size: .9rem; font-weight: 500; min-height: 24px;
-    }
-    #form-status.success { color: var(--sage); }
-    #form-status.error   { color: #c0392b; }
-
-    /* ─── FOOTER ─────────────────────────────────── */
-    footer {
-      background: var(--stone);
-      color: rgba(255,255,255,.7);
-      padding: 60px 8vw 40px;
-    }
-    .footer-top {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      flex-wrap: wrap; gap: 40px;
-      padding-bottom: 40px;
-      border-bottom: 1px solid rgba(255,255,255,.1);
-    }
-    .footer-brand {
-      font-family: var(--ff-head);
-      font-size: 1.6rem; font-weight: 300; color: var(--white);
-    }
-    .footer-brand span { color: var(--sage-lt); }
-    .footer-brand p { font-family: var(--ff-body); font-size: .85rem; margin-top: 8px; font-weight: 300; }
-
-    .footer-links h4 { color: var(--white); font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; }
+    /* FOOTER */
+    footer { background: var(--brown); color: rgba(255,255,255,.65); padding: 60px 8vw 40px; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; padding-bottom: 40px; border-bottom: 1px solid rgba(212,178,125,.15); }
+    .footer-brand { font-family: var(--ff-head); font-size: 1.6rem; font-weight: 400; color: var(--white); }
+    .footer-brand span { color: var(--sand); }
+    .footer-brand p { font-family: var(--ff-body); font-size: .83rem; margin-top: 6px; font-weight: 300; }
+    .footer-links h4 { color: var(--sand-lt); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 16px; font-weight: 600; }
     .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-links a { color: rgba(255,255,255,.6); text-decoration: none; font-size: .9rem; transition: color .2s; }
-    .footer-links a:hover { color: var(--sage-lt); }
+    .footer-links a { color: rgba(255,255,255,.55); text-decoration: none; font-size: .88rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--sand); }
+    .footer-social { display: flex; gap: 10px; margin-top: 20px; }
+    .social-link { width: 38px; height: 38px; border: 1px solid rgba(212,178,125,.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; color: rgba(255,255,255,.6); transition: border-color .2s, color .2s, background .2s; }
+    .social-link:hover { border-color: var(--sand); color: var(--sand); background: rgba(212,178,125,.1); }
+    .social-link svg { width: 16px; height: 16px; fill: currentColor; }
+    .footer-bottom { padding-top: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: .8rem; }
 
-    .footer-social { display: flex; gap: 12px; margin-top: 16px; }
-    .social-link {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none;
-      color: rgba(255,255,255,.7);
-      font-size: 1rem;
-      transition: border-color .2s, color .2s, background .2s;
-    }
-    .social-link:hover { border-color: var(--sage-lt); color: var(--sage-lt); background: rgba(124,158,138,.1); }
-
-    .footer-bottom {
-      padding-top: 32px;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
-      font-size: .82rem;
-    }
-
-    /* ─── ANIMATIONS ─────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; } to { opacity: 1; }
-    }
-    @keyframes spin {
-      from { transform: translate(-50%,-50%) rotate(0deg); }
-      to   { transform: translate(-50%,-50%) rotate(360deg); }
-    }
-
-    .reveal {
-      opacity: 0; transform: translateY(30px);
-      transition: opacity .7s var(--ease-out), transform .7s var(--ease-out);
-    }
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes spin { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease-out), transform .7s var(--ease-out); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── RESPONSIVE ─────────────────────────────── */
+    /* FLOATING WHATSAPP */
+    .float-whatsapp { position: fixed; bottom: 28px; right: 28px; z-index: 200; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 24px rgba(37,211,102,.4); text-decoration: none; transition: transform .3s var(--ease-out); animation: pulse-green 2.5s infinite; }
+    .float-whatsapp:hover { transform: scale(1.1); }
+    .float-whatsapp svg { width: 26px; height: 26px; fill: white; }
+    @keyframes pulse-green { 0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,.4); } 50% { box-shadow: 0 6px 36px rgba(37,211,102,.65); } }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) { .credentials { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
-      .hero-visual { min-height: 360px; }
+      .hero-visual { min-height: 320px; }
       .hero-content { padding: 60px 6vw; }
-      .about { grid-template-columns: 1fr; }
-      .about-visual { min-height: 340px; }
       #agenda { grid-template-columns: 1fr; gap: 48px; }
       .form-row { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: fixed; top: 70px; left: 0; right: 0;
-        background: var(--white);
-        padding: 24px; gap: 20px;
-        border-bottom: 1px solid var(--warm);
-        box-shadow: var(--shadow);
-      }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 70px; left: 0; right: 0; background: var(--white); padding: 24px; gap: 20px; border-bottom: 1px solid var(--warm); box-shadow: var(--shadow); }
       .hamburger { display: flex; }
     }
-    @media (max-width: 540px) {
-      .form-wrapper { padding: 32px 24px; }
+    @media (max-width: 640px) {
+      .credentials { grid-template-columns: 1fr; }
+      .form-wrapper { padding: 32px 22px; }
       .hero-stats { flex-wrap: wrap; gap: 24px; }
       .footer-top { flex-direction: column; }
+      .about-tagline { font-size: .92rem; }
     }
-
-    /* ─── FLOATING WHATSAPP ───────────────────────── */
-    .float-whatsapp {
-      position: fixed; bottom: 28px; right: 28px; z-index: 200;
-      width: 58px; height: 58px;
-      background: #25D366;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 6px 24px rgba(37,211,102,.4);
-      text-decoration: none;
-      font-size: 26px;
-      transition: transform .3s var(--ease-out), box-shadow .3s;
-      animation: pulse-green 2.5s infinite;
-    }
-    .float-whatsapp:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,.5); }
-    @keyframes pulse-green {
-      0%, 100% { box-shadow: 0 6px 24px rgba(37,211,102,.4); }
-      50%       { box-shadow: 0 6px 36px rgba(37,211,102,.7); }
-    }
-
-    /* ─── SMOOTH DIVIDERS ────────────────────────── */
-    .wave-divider { line-height: 0; }
-    .wave-divider svg { display: block; width: 100%; }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
   <nav id="mainNav">
     <a href="#" class="nav-logo">Dra. <span>Valeria Aylas</span></a>
     <ul class="nav-links" id="navLinks">
@@ -643,22 +248,14 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <header class="hero">
     <div class="hero-content">
       <span class="hero-badge">Medicina Física y Rehabilitación</span>
       <h1>Tu camino hacia<br>una <em>vida sin dolor</em></h1>
-      <p class="hero-desc">
-        Tratamientos personalizados para recuperar tu movilidad, aliviar el dolor
-        y mejorar tu calidad de vida. La Dra. Valeria Aylas te acompaña en cada etapa de tu recuperación.
-      </p>
+      <p class="hero-desc">Tratamientos personalizados para recuperar tu movilidad, aliviar el dolor y mejorar tu calidad de vida. La Dra. Valeria Aylas te acompaña en cada etapa de tu recuperación.</p>
       <div class="hero-actions">
-        <a href="#agenda" class="btn-primary">
-          📅 Agenda tu cita
-        </a>
-        <a href="#servicios" class="btn-ghost">
-          Ver servicios →
-        </a>
+        <a href="#agenda" class="btn-primary">📅 Agenda tu cita</a>
+        <a href="#servicios" class="btn-ghost">Ver servicios →</a>
       </div>
       <div class="hero-stats">
         <div class="stat-item">
@@ -675,29 +272,28 @@
         </div>
       </div>
     </div>
-
     <div class="hero-visual">
       <div class="hero-decoration"></div>
       <div class="hero-img-placeholder">
-        <img src="img/dra-valeria-aylas.jpg" style="width:100%; height:100%; object-fit:cover;">
+        <img src="img/dra-valeria-aylas.jpg" alt="Dra. Valeria Aylas" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.style.display='none'">
+        <svg width="72" height="72" viewBox="0 0 80 80" fill="none"><circle cx="40" cy="28" r="16" stroke="#D4B27D" stroke-width="1.5"/><path d="M10 72 C10 52 70 52 70 72" stroke="#D4B27D" stroke-width="1.5" fill="none"/></svg>
+        <p style="font-size:.85rem;text-align:center;padding:0 40px;color:#D4B27D;">Foto de la Dra. Aylas</p>
       </div>
     </div>
   </header>
 
-  <!-- SOBRE MÍ -->
   <section class="about" id="sobre-mi">
     <div class="about-text reveal">
       <span class="section-tag">Sobre mí</span>
-      <h2>Formada para <em>sanar,</em><br>comprometida contigo</h2>
-      <p>
-        Soy Médico Cirujano egresada de la Universidad Nacional Federico Villarreal, 
-        con especialización en Medicina Física y Rehabilitación. Me apasiona ayudar a mis 
-        pacientes a recuperar su funcionalidad y bienestar a través de un enfoque integral y humanizado.
-      </p>
-      <p style="margin-top:12px;">
-        Mi práctica está enfocada en el diagnóstico y tratamiento del dolor musculoesquelético, 
-        lesiones deportivas y rehabilitación post-quirúrgica.
-      </p>
+      <h2>Formada para <em>sanar,</em><br>comprometida con tu recuperación</h2>
+
+      <!-- Tagline con líneas decorativas laterales -->
+      <p class="about-tagline">Movimiento con propósito · Tratamiento con evidencia</p>
+
+      <p>Soy médica cirujana egresada de la Universidad Nacional Federico Villarreal, especializada en Medicina Física y Rehabilitación. Acompaño a mis pacientes en su proceso de recuperación para que vuelvan a moverse, aliviar el dolor y recuperar su bienestar, desde un enfoque integral, cercano y humanizado.</p>
+      <p>Mi práctica está enfocada en el diagnóstico y tratamiento del dolor musculoesquelético, lesiones deportivas y rehabilitación postquirúrgica, integrando terapias de medicina regenerativa cuando el caso lo requiere, con planes personalizados según cada etapa de recuperación.</p>
+      <p>Cuento con formación especializada complementada con experiencia clínica en instituciones de referencia nacional e internacional: Hospital 12 de Octubre (Madrid), Institut Guttmann (Barcelona), Instituto Nacional de Rehabilitación "Dra. Adriana Rebaza Flores", Hospital Nacional Edgardo Rebagliati Martins y Clínica San Gabriel.</p>
+
       <div class="credentials">
         <div class="credential-item">
           <div class="credential-icon">🎓</div>
@@ -710,70 +306,54 @@
           <div class="credential-icon">🏥</div>
           <div class="credential-text">
             <strong>Especialista en Medicina Física y Rehabilitación</strong>
-            <span>Formación especializada · Colegiada CMP</span>
+            <span>Colegiada CMP</span>
           </div>
         </div>
         <div class="credential-item">
-          <div class="credential-icon">📲</div>
+          <div class="credential-icon">🌐</div>
           <div class="credential-text">
-            <strong>@dra.valeria.aylas</strong>
-            <span>Contenido educativo sobre salud y rehabilitación</span>
+            <strong>Sígueme en redes</strong>
+            <div class="credential-social">
+              <a href="https://www.instagram.com/dra.valeria.aylas/" target="_blank" rel="noopener" title="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                Instagram
+              </a>
+              <a href="https://www.tiktok.com/@dra.valeria.aylas" target="_blank" rel="noopener" title="TikTok">
+                <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+                TikTok
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="about-visual">
-      <div class="about-visual-inner">
-        <img src="img/dra-valeria-aylas-2.jpg" style="width:100%; height:100%; object-fit:cover;">
-      </div>
-      <div class="about-label">Especialista<br>en rehabilitación</div>
-    </div>
   </section>
 
-  <!-- SERVICIOS -->
   <section class="services" id="servicios">
     <div class="section-header reveal">
       <span class="section-tag">Especialidades</span>
       <h2>Tratamientos <em>diseñados</em><br>para tu recuperación</h2>
-      <p>Cada plan de tratamiento es personalizado según tu diagnóstico, historia clínica y objetivos de recuperación.</p>
+      <p>Cada plan es personalizado según tu diagnóstico, historia clínica y objetivos funcionales, con un enfoque basado en evidencia.</p>
     </div>
-
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-icon">🦴</div>
         <h3>Rehabilitación Física</h3>
-        <p>Programas integrales de recuperación muscular y articular para restaurar tu movilidad y funcionalidad tras lesiones o cirugías.</p>
+        <p>Programas integrales de recuperación muscular y articular para restaurar tu movilidad, fuerza y funcionalidad después de lesiones o cirugías.</p>
       </div>
       <div class="service-card reveal">
         <div class="service-icon">💆</div>
         <h3>Manejo del Dolor</h3>
-        <p>Tratamientos especializados para el dolor crónico y agudo: cervicalgia, lumbalgia, artritis, fibromialgia y más condiciones musculoesqueléticas.</p>
+        <p>Tratamientos especializados para dolor agudo y crónico: cervicalgia, lumbalgia, artritis, fibromialgia y otras condiciones musculoesqueléticas.</p>
       </div>
       <div class="service-card reveal">
-        <div class="service-icon">⚡</div>
-        <h3>Electroterapia y Ultrasonido</h3>
-        <p>Terapias físicas de última generación: TENS, corrientes interferenciales, ultrasonido terapéutico y magnetoterapia para acelerar tu recuperación.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">🏃</div>
-        <h3>Rehabilitación Deportiva</h3>
-        <p>Recuperación y prevención de lesiones deportivas. Regresa a tu actividad física con mayor fuerza, estabilidad y confianza.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">📋</div>
-        <h3>Evaluación Funcional</h3>
-        <p>Diagnóstico completo de tu capacidad funcional, rango de movimiento y fuerza muscular para diseñar el plan terapéutico ideal.</p>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon">🧘</div>
-        <h3>Terapia Postquirúrgica</h3>
-        <p>Acompañamiento especializado en tu recuperación post-operatoria para minimizar complicaciones y optimizar resultados quirúrgicos.</p>
+        <div class="service-icon">🌿</div>
+        <h3>Medicina Regenerativa</h3>
+        <p>Terapias orientadas a la recuperación y regeneración de tejidos, indicadas en casos seleccionados para el manejo del dolor y mejora funcional.</p>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONIOS -->
   <section class="testimonials" id="testimonios">
     <div class="section-header reveal">
       <span class="section-tag">Testimonios</span>
@@ -785,109 +365,70 @@
         <blockquote>"La Dra. Aylas es increíblemente profesional y empática. Después de meses con dolor lumbar, en pocas sesiones noté una mejora enorme. ¡La recomiendo al 100%!"</blockquote>
         <div class="testimonial-author">
           <div class="author-avatar">M</div>
-          <div>
-            <div class="author-name">María L.</div>
-            <div class="author-detail">Rehabilitación lumbar</div>
-          </div>
+          <div><div class="author-name">María L.</div><div class="author-detail">Rehabilitación lumbar</div></div>
         </div>
       </div>
       <div class="testimonial-card reveal">
         <div class="testimonial-stars">★★★★★</div>
-        <blockquote>"Volví a correr gracias a la Dra. Valeria. Su diagnóstico fue preciso y el plan de rehabilitación deportiva superó todas mis expectativas. Excelente profesional."</blockquote>
+        <blockquote>"Volví a correr gracias a la Dra. Valeria. Su diagnóstico fue preciso y el plan de rehabilitación superó todas mis expectativas. Excelente profesional."</blockquote>
         <div class="testimonial-author">
           <div class="author-avatar">C</div>
-          <div>
-            <div class="author-name">Carlos R.</div>
-            <div class="author-detail">Lesión de rodilla · Corredor</div>
-          </div>
+          <div><div class="author-name">Carlos R.</div><div class="author-detail">Lesión de rodilla · Corredor</div></div>
         </div>
       </div>
       <div class="testimonial-card reveal">
         <div class="testimonial-stars">★★★★★</div>
-        <blockquote>"Desde mi operación de columna tenía miedo de no recuperarme bien. La Dra. Aylas me acompañó en todo el proceso con mucha paciencia y dedicación. Hoy estoy al 100%."</blockquote>
+        <blockquote>"Desde mi operación de columna tenía miedo de no recuperarme bien. La Dra. Aylas me acompañó en todo el proceso con paciencia y dedicación. Hoy estoy al 100%."</blockquote>
         <div class="testimonial-author">
           <div class="author-avatar">A</div>
-          <div>
-            <div class="author-name">Ana P.</div>
-            <div class="author-detail">Rehabilitación post-quirúrgica</div>
-          </div>
+          <div><div class="author-name">Ana P.</div><div class="author-detail">Rehabilitación post-quirúrgica</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- AGENDA -->
   <section id="agenda">
     <div class="agenda-info reveal">
       <span class="section-tag">Citas</span>
       <h2>Agenda tu<br><em>consulta</em> hoy</h2>
-      <p>
-        Completa el formulario y recibirás una confirmación de tu cita. 
-        La Dra. Aylas la verá directamente en su Google Calendar y se pondrá en contacto contigo.
-      </p>
-
+      <p>Completa el formulario y recibirás la confirmación de tu cita. Revisaré tu solicitud personalmente y me pondré en contacto contigo para coordinar tu atención.</p>
       <div class="info-items">
         <div class="info-item">
           <div class="info-item-icon">🕐</div>
-          <div>
-            <strong>Horario de atención</strong>
-            <span>Lunes a Viernes · 9:00 AM – 6:00 PM</span>
-          </div>
+          <div><strong>Horario de atención</strong><span>Lunes a Viernes · 8:30 AM – 8:00 PM</span></div>
         </div>
         <div class="info-item">
           <div class="info-item-icon">📍</div>
-          <div>
-            <strong>Ubicación</strong>
-            <span>Lima, Perú · (Confirmar dirección exacta)</span>
-          </div>
+          <div><strong>Ubicación</strong><span>Pueblo Libre, Lima, Perú · (Dirección previa coordinación)</span></div>
         </div>
         <div class="info-item">
           <div class="info-item-icon">✅</div>
-          <div>
-            <strong>Confirmación inmediata</strong>
-            <span>Recibirás confirmación por email y WhatsApp</span>
-          </div>
+          <div><strong>Confirmación inmediata</strong><span>Recibirás confirmación por email y WhatsApp</span></div>
         </div>
       </div>
-
-      <a href="https://wa.me/51999999999?text=Hola%20Dra.%20Aylas%2C%20quisiera%20agendar%20una%20cita" 
-         class="whatsapp-btn" target="_blank" rel="noopener">
-        💬 Escribir por WhatsApp
+      <a href="https://wa.me/51999999999?text=Hola%20Dra.%20Aylas%2C%20quisiera%20agendar%20una%20cita" class="whatsapp-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+        Escribir por WhatsApp
       </a>
     </div>
-
     <div class="form-wrapper reveal">
       <p class="form-title">Reserva tu cita</p>
       <form id="appointmentForm" novalidate>
         <div class="form-row">
-          <div class="form-group">
-            <label>Nombre *</label>
-            <input type="text" name="name" placeholder="Tu nombre completo" required />
-          </div>
-          <div class="form-group">
-            <label>Apellido *</label>
-            <input type="text" name="lastname" placeholder="Tu apellido" required />
-          </div>
+          <div class="form-group"><label>Nombre *</label><input type="text" name="name" placeholder="Tu nombre" required /></div>
+          <div class="form-group"><label>Apellido *</label><input type="text" name="lastname" placeholder="Tu apellido" required /></div>
         </div>
         <div class="form-row">
-          <div class="form-group">
-            <label>Email *</label>
-            <input type="email" name="email" placeholder="tu@correo.com" required />
-          </div>
-          <div class="form-group">
-            <label>Teléfono / WhatsApp *</label>
-            <input type="tel" name="phone" placeholder="+51 999 999 999" required />
-          </div>
+          <div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="tu@correo.com" required /></div>
+          <div class="form-group"><label>Teléfono / WhatsApp *</label><input type="tel" name="phone" placeholder="+51 999 999 999" required /></div>
         </div>
         <div class="form-row">
-          <div class="form-group">
-            <label>Fecha deseada *</label>
-            <input type="date" name="date" required />
-          </div>
+          <div class="form-group"><label>Fecha deseada *</label><input type="date" name="date" required /></div>
           <div class="form-group">
             <label>Hora preferida *</label>
             <select name="time" required>
               <option value="">Seleccionar hora</option>
+              <option value="08:00">08:00 AM</option>
               <option value="09:00">09:00 AM</option>
               <option value="10:00">10:00 AM</option>
               <option value="11:00">11:00 AM</option>
@@ -896,6 +437,9 @@
               <option value="15:00">03:00 PM</option>
               <option value="16:00">04:00 PM</option>
               <option value="17:00">05:00 PM</option>
+              <option value="18:00">06:00 PM</option>
+              <option value="19:00">07:00 PM</option>
+              <option value="20:00">08:00 PM</option>
             </select>
           </div>
         </div>
@@ -903,12 +447,12 @@
           <label>Servicio de interés *</label>
           <select name="service" required>
             <option value="">¿Qué tipo de consulta necesitas?</option>
-            <option value="Rehabilitación física">Rehabilitación física</option>
-            <option value="Manejo del dolor">Manejo del dolor</option>
-            <option value="Electroterapia">Electroterapia / Ultrasonido</option>
-            <option value="Rehabilitación deportiva">Rehabilitación deportiva</option>
+            <option value="Dolor muscular o articular">Dolor muscular o articular</option>
+            <option value="Dolor crónico">Dolor crónico / Enfermedades crónicas</option>
+            <option value="Lesión deportiva">Lesión deportiva</option>
+            <option value="Rehabilitación postquirúrgica">Rehabilitación postquirúrgica</option>
+            <option value="Condiciones neurológicas">Condiciones neurológicas</option>
             <option value="Evaluación funcional">Evaluación funcional</option>
-            <option value="Rehabilitación post-quirúrgica">Post-quirúrgica</option>
             <option value="Primera consulta">Primera consulta / No estoy seguro</option>
           </select>
         </div>
@@ -916,35 +460,28 @@
           <label>Motivo de consulta (opcional)</label>
           <textarea name="notes" placeholder="Cuéntanos brevemente tus síntomas o lo que te trajo aquí..."></textarea>
         </div>
-        <button type="submit" class="form-submit" id="submitBtn">
-          Confirmar cita →
-        </button>
+        <button type="submit" class="form-submit" id="submitBtn">Confirmar cita →</button>
         <div id="form-status"></div>
       </form>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-top">
       <div>
-        <div class="footer-brand">
-          Dra. <span>Valeria Aylas</span>
-          <p>Medicina Física y Rehabilitación</p>
-        </div>
-        <div class="footer-social" style="margin-top:20px;">
+        <div class="footer-brand">Dra. <span>Valeria Aylas</span><p>Medicina Física y Rehabilitación</p></div>
+        <div class="footer-social">
           <a href="https://instagram.com/dra.valeria.aylas" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
-            📷
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
           <a href="https://wa.me/51999999999" class="social-link" target="_blank" rel="noopener" aria-label="WhatsApp">
-            💬
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
           </a>
-          <a href="https://facebook.com" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
-            👤
+          <a href="https://tiktok.com/@dra.valeria.aylas" class="social-link" target="_blank" rel="noopener" aria-label="TikTok">
+            <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
           </a>
         </div>
       </div>
-
       <div class="footer-links">
         <h4>Navegación</h4>
         <ul>
@@ -954,193 +491,110 @@
           <li><a href="#agenda">Agendar cita</a></li>
         </ul>
       </div>
-
       <div class="footer-links">
         <h4>Servicios</h4>
         <ul>
           <li><a href="#agenda">Rehabilitación física</a></li>
           <li><a href="#agenda">Manejo del dolor</a></li>
-          <li><a href="#agenda">Rehabilitación deportiva</a></li>
+          <li><a href="#agenda">Medicina regenerativa</a></li>
           <li><a href="#agenda">Evaluación funcional</a></li>
         </ul>
       </div>
-
       <div class="footer-links">
         <h4>Contacto</h4>
         <ul>
           <li><a href="https://instagram.com/dra.valeria.aylas">@dra.valeria.aylas</a></li>
           <li><a href="https://wa.me/51999999999">WhatsApp directo</a></li>
-          <li><a href="/cdn-cgi/l/email-protection#b8dbd7d6ccd9dbccd7f8dccad9ced9d4ddcad1d996dbd7d5">Email</a></li>
+          <li><a href="mailto:contacto@dravaleria.com">Email</a></li>
         </ul>
       </div>
     </div>
-
     <div class="footer-bottom">
       <span>© 2026 Dra. Valeria Aylas · Medicina Física y Rehabilitación</span>
       <span>Hecho con ❤️ · Lima, Perú</span>
     </div>
   </footer>
 
-  <!-- FLOATING WHATSAPP -->
-  <a href="https://wa.me/51999999999?text=Hola%20Dra.%20Aylas%2C%20quisiera%20información%20sobre%20sus%20servicios" 
-     class="float-whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
-    💬
+  <a href="https://wa.me/51999999999?text=Hola%20Dra.%20Aylas%2C%20quisiera%20información%20sobre%20sus%20servicios" class="float-whatsapp" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
   </a>
 
   <script>
-    // ══════════════════════════════════════════════════════
-    //  UNICA LINEA QUE DEBES CAMBIAR:
-    //  Pega aqui la URL que te da Google al publicar el script
-    // ══════════════════════════════════════════════════════
     var APPS_SCRIPT_URL = 'TU_URL_GOOGLE_APPS_SCRIPT_AQUI';
-    var WA_NUMBER       = '51999999999';
+    var WA_NUMBER = '51999999999';
 
-    // NAV SCROLL
     var nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', function() {
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    });
+    window.addEventListener('scroll', function() { nav.classList.toggle('scrolled', window.scrollY > 40); });
 
-    // HAMBURGER
     var hamburger = document.getElementById('hamburger');
     var navLinks  = document.getElementById('navLinks');
-    hamburger.addEventListener('click', function() {
-      navLinks.classList.toggle('open');
-    });
-    navLinks.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function() { navLinks.classList.remove('open'); });
-    });
+    hamburger.addEventListener('click', function() { navLinks.classList.toggle('open'); });
+    navLinks.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', function() { navLinks.classList.remove('open'); }); });
 
-    // SCROLL REVEAL
     var reveals  = document.querySelectorAll('.reveal');
     var revealOb = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry, i) {
-        if (entry.isIntersecting)
-          setTimeout(function() { entry.target.classList.add('visible'); }, i * 80);
+        if (entry.isIntersecting) setTimeout(function() { entry.target.classList.add('visible'); }, i * 80);
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     reveals.forEach(function(el) { revealOb.observe(el); });
 
-    // FECHA MINIMA = HOY
     var dateInput  = document.querySelector('input[name="date"]');
     var timeSelect = document.querySelector('select[name="time"]');
-    var today      = new Date();
-    var yyyy = today.getFullYear();
-    var mm   = String(today.getMonth() + 1).padStart(2, '0');
-    var dd   = String(today.getDate()).padStart(2, '0');
-    if (dateInput) dateInput.setAttribute('min', yyyy + '-' + mm + '-' + dd);
+    var today = new Date();
+    if (dateInput) dateInput.setAttribute('min', today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0'));
 
-    // DISPONIBILIDAD EN TIEMPO REAL
-    var ALL_TIMES = ['09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00'];
-
+    var ALL_TIMES = ['08:00','09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
     function resetTimeOptions(ocupados) {
       ocupados = ocupados || [];
       timeSelect.innerHTML = '<option value="">Seleccionar hora</option>';
       ALL_TIMES.forEach(function(t) {
-        var opt  = document.createElement('option');
+        var opt = document.createElement('option');
         opt.value = t;
-        var hora = parseInt(t.split(':')[0]);
-        var ampm = hora >= 12 ? 'PM' : 'AM';
-        var h12  = hora > 12 ? hora - 12 : hora;
+        var h = parseInt(t); var ampm = h >= 12 ? 'PM' : 'AM'; var h12 = h > 12 ? h-12 : (h===0?12:h);
         opt.textContent = String(h12).padStart(2,'0') + ':00 ' + ampm;
-        if (ocupados.includes(t)) {
-          opt.disabled    = true;
-          opt.textContent += ' - Ocupado';
-          opt.style.color = '#bbb';
-        }
+        if (ocupados.includes(t)) { opt.disabled = true; opt.textContent += ' - Ocupado'; opt.style.color = '#bbb'; }
         timeSelect.appendChild(opt);
       });
     }
 
     if (dateInput) {
       dateInput.addEventListener('change', async function() {
-        var fecha = dateInput.value;
-        if (!fecha) return;
+        var fecha = dateInput.value; if (!fecha) return;
         timeSelect.disabled = true;
         timeSelect.innerHTML = '<option>Verificando disponibilidad...</option>';
         if (APPS_SCRIPT_URL !== 'TU_URL_GOOGLE_APPS_SCRIPT_AQUI') {
-          try {
-            var res  = await fetch(APPS_SCRIPT_URL + '?action=disponibilidad&fecha=' + fecha);
-            var json = await res.json();
-            resetTimeOptions(json.data && json.data.ocupados ? json.data.ocupados : []);
-          } catch(e) {
-            resetTimeOptions();
-          }
-        } else {
-          resetTimeOptions();
-        }
+          try { var r = await fetch(APPS_SCRIPT_URL+'?action=disponibilidad&fecha='+fecha); var j = await r.json(); resetTimeOptions(j.data&&j.data.ocupados?j.data.ocupados:[]); }
+          catch(e) { resetTimeOptions(); }
+        } else { resetTimeOptions(); }
         timeSelect.disabled = false;
       });
     }
 
-    // FORM SUBMIT
-    var form      = document.getElementById('appointmentForm');
-    var statusEl  = document.getElementById('form-status');
+    var form = document.getElementById('appointmentForm');
+    var statusEl = document.getElementById('form-status');
     var submitBtn = document.getElementById('submitBtn');
-
-    function mostrarStatus(msg, tipo) {
-      statusEl.textContent = msg;
-      statusEl.className   = tipo;
-      submitBtn.classList.remove('loading');
-    }
+    function mostrarStatus(msg, tipo) { statusEl.textContent = msg; statusEl.className = tipo; submitBtn.classList.remove('loading'); }
 
     form.addEventListener('submit', async function(e) {
       e.preventDefault();
       var data = Object.fromEntries(new FormData(form));
-
-      var requeridos = ['name','email','phone','date','time','service'];
-      if (requeridos.some(function(k) { return !data[k] || !data[k].trim(); })) {
-        mostrarStatus('Por favor completa todos los campos requeridos.', 'error');
-        return;
-      }
-
-      submitBtn.textContent = 'Agendando cita...';
-      submitBtn.classList.add('loading');
-      statusEl.textContent = '';
-
-      var nombreCompleto = data.name + (data.lastname ? ' ' + data.lastname : '');
-      var waMsg = encodeURIComponent(
-        'Nueva solicitud de cita\n\n' +
-        'Paciente: ' + nombreCompleto + '\n' +
-        'Email: ' + data.email + '\n' +
-        'Telefono: ' + data.phone + '\n' +
-        'Fecha: ' + data.date + '\n' +
-        'Hora: ' + data.time + '\n' +
-        'Servicio: ' + data.service + '\n' +
-        'Notas: ' + (data.notes || 'Ninguna')
-      );
-      var waURL = 'https://wa.me/' + WA_NUMBER + '?text=' + waMsg;
-
+      if (['name','email','phone','date','time','service'].some(function(k){ return !data[k]||!data[k].trim(); })) { mostrarStatus('Por favor completa todos los campos requeridos.','error'); return; }
+      submitBtn.textContent = 'Agendando cita...'; submitBtn.classList.add('loading'); statusEl.textContent = '';
+      var nc = data.name+(data.lastname?' '+data.lastname:'');
+      var waMsg = encodeURIComponent('Nueva solicitud de cita\n\nPaciente: '+nc+'\nEmail: '+data.email+'\nTelefono: '+data.phone+'\nFecha: '+data.date+'\nHora: '+data.time+'\nServicio: '+data.service+'\nNotas: '+(data.notes||'Ninguna'));
+      var waURL = 'https://wa.me/'+WA_NUMBER+'?text='+waMsg;
       if (APPS_SCRIPT_URL !== 'TU_URL_GOOGLE_APPS_SCRIPT_AQUI') {
         try {
-          var res  = await fetch(APPS_SCRIPT_URL, {
-            method:  'POST',
-            body:    JSON.stringify(data),
-            headers: { 'Content-Type': 'application/json' }
-          });
-          var json = await res.json();
-          if (json.success) {
-            mostrarStatus('Cita confirmada! Revisa tu email. Abriendo WhatsApp...', 'success');
-            submitBtn.textContent = 'Cita confirmada!';
-            form.reset();
-            resetTimeOptions();
-            setTimeout(function() { window.open(waURL, '_blank'); }, 900);
-            return;
-          } else {
-            mostrarStatus(json.message, 'error');
-            submitBtn.textContent = 'Confirmar cita';
-            submitBtn.classList.remove('loading');
-            return;
-          }
-        } catch(err) {
-          console.warn('Apps Script no disponible, usando WhatsApp:', err);
-        }
+          var r = await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'application/json'}});
+          var j = await r.json();
+          if (j.success) { mostrarStatus('Cita confirmada! Revisa tu email. Abriendo WhatsApp...','success'); submitBtn.textContent='Cita confirmada!'; form.reset(); resetTimeOptions(); setTimeout(function(){window.open(waURL,'_blank');},900); return; }
+          else { mostrarStatus(j.message,'error'); submitBtn.textContent='Confirmar cita'; submitBtn.classList.remove('loading'); return; }
+        } catch(err) { console.warn('Apps Script no disponible:', err); }
       }
-
-      window.open(waURL, '_blank');
-      mostrarStatus('Solicitud enviada! Continua la confirmacion por WhatsApp.', 'success');
-      submitBtn.textContent = 'Enviado';
-      form.reset();
+      window.open(waURL,'_blank');
+      mostrarStatus('Solicitud enviada! Continua la confirmacion por WhatsApp.','success');
+      submitBtn.textContent = 'Enviado'; form.reset();
     });
   </script>
 </body>
