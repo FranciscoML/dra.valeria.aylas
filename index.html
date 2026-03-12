@@ -520,7 +520,7 @@
   </a>
 
   <script>
-    var APPS_SCRIPT_URL = 'TU_URL_GOOGLE_APPS_SCRIPT_AQUI';
+    var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwt58x0Tk5M6sdm87REJRmA-qIlrSiZbiGSjge7UDFaBOP9idAibKADSQisHrzvjL9F0Q/exec';
     var WA_NUMBER = '51986962950';
 
     var nav = document.getElementById('mainNav');
@@ -563,7 +563,7 @@
         var fecha = dateInput.value; if (!fecha) return;
         timeSelect.disabled = true;
         timeSelect.innerHTML = '<option>Verificando disponibilidad...</option>';
-        if (APPS_SCRIPT_URL !== 'TU_URL_GOOGLE_APPS_SCRIPT_AQUI') {
+        if (APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwt58x0Tk5M6sdm87REJRmA-qIlrSiZbiGSjge7UDFaBOP9idAibKADSQisHrzvjL9F0Q/exec') {
           try { var r = await fetch(APPS_SCRIPT_URL+'?action=disponibilidad&fecha='+fecha); var j = await r.json(); resetTimeOptions(j.data&&j.data.ocupados?j.data.ocupados:[]); }
           catch(e) { resetTimeOptions(); }
         } else { resetTimeOptions(); }
@@ -584,7 +584,7 @@
       var nc = data.name+(data.lastname?' '+data.lastname:'');
       var waMsg = encodeURIComponent('Nueva solicitud de cita\n\nPaciente: '+nc+'\nEmail: '+data.email+'\nTelefono: '+data.phone+'\nFecha: '+data.date+'\nHora: '+data.time+'\nServicio: '+data.service+'\nNotas: '+(data.notes||'Ninguna'));
       var waURL = 'https://wa.me/'+WA_NUMBER+'?text='+waMsg;
-      if (APPS_SCRIPT_URL !== 'TU_URL_GOOGLE_APPS_SCRIPT_AQUI') {
+      if (APPS_SCRIPT_URL !== 'https://script.google.com/macros/s/AKfycbwt58x0Tk5M6sdm87REJRmA-qIlrSiZbiGSjge7UDFaBOP9idAibKADSQisHrzvjL9F0Q/exec') {
         try {
           var r = await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify(data),headers:{'Content-Type':'application/json'}});
           var j = await r.json();
