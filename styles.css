@@ -1,41 +1,41 @@
 @font-face {
-    font-family: "Poorich";
-    src:
-    local("Poorich"),
-    url("/fonts/poorich.ttf") format("truetype")
+	font-family: "Poorich";
+	src:
+	local("Poorich"),
+	url("/fonts/poorich.ttf") format("truetype")
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
---brown:    #47280E;
---brown-lt: #6B3D18;
---gold:     #8A6A32;
---gold-lt:  #A8844A;
---sand:     #D4B27D;
---sand-lt:  #E8D4B0;
---cream:    #F7F1E8;
---warm:     #EFE6D6;
---white:    #FDFAF5;
---muted:    #7A6A55;
---ff-head:  "Poorich", sans-serif;
---ff-body:  "Montserrat", sans-serif;
---ease-out: cubic-bezier(0.16, 1, 0.3, 1);
---shadow:    0 8px 40px rgba(71,40,14,.10);
---shadow-lg: 0 24px 60px rgba(71,40,14,.16);
+	--brown:    #47280E;
+	--brown-lt: #6B3D18;
+	--gold:     #8A6A32;
+	--gold-lt:  #A8844A;
+	--sand:     #D4B27D;
+	--sand-lt:  #E8D4B0;
+	--cream:    #F7F1E8;
+	--warm:     #EFE6D6;
+	--white:    #FDFAF5;
+	--muted:    #7A6A55;
+	--ff-head:  "Poorich", sans-serif;
+	--ff-body:  "Montserrat", sans-serif;
+	--ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--shadow:    0 8px 40px rgba(71,40,14,.10);
+	--shadow-lg: 0 24px 60px rgba(71,40,14,.16);
 }
 html { scroll-behavior: smooth; }
 body { font-family: var(--ff-body); background: var(--white); color: var(--brown); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
 
 /* NAV */
 nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 5vw;
-    background: rgba(253,250,245,0.92);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(138,106,50,.15);
-    transition: padding .3s var(--ease-out);
+	position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+	display: flex; align-items: center; justify-content: space-between;
+	padding: 20px 5vw;
+	background: rgba(253,250,245,0.92);
+	backdrop-filter: blur(14px);
+	border-bottom: 1px solid rgba(138,106,50,.15);
+	transition: padding .3s var(--ease-out);
 }
 nav.scrolled { padding: 12px 5vw; }
 .nav-logo img { max-width: 300px; }
